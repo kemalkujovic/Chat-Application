@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
-import Chat from "../components/Chat";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Chat from "../components/Chat/Chat";
 import classes from "./Home.module.css";
 const Home = () => {
   return (

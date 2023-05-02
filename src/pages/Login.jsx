@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./Register.module.css";
-import Add from "../img/addAvatar.jpg";
 const Login = () => {
   return (
     <div className={classes.formContainer}>
