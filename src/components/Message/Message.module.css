@@ -1,0 +1,25 @@
+.message {
+  display: flex;
+  gap: 20px;
+}
+
+.messageInfo {
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.messageInfo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.messageContent {
+}
+
+.messageContent img {
+  width: 50%;
+}
