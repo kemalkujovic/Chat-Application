@@ -4,7 +4,13 @@ import Img from "../../img/img.jpg";
 import Attach from "../../img/attach.jpg";
 import { AuthContext } from "../../contex/AuthContext";
 import { ChatContext } from "../../contex/ChatContext";
-import { Timestamp, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -17,7 +23,10 @@ const Input = () => {
   const handleSend = async () => {
     if (img) {
       const storageRef = ref(storage, uuid());
+
       const uploadTask = uploadBytesResumable(storageRef, img);
+
+      console.log(uploadTask);
       uploadTask.on(
         (error) => {
           //TODO:Handle Error
@@ -54,6 +63,7 @@ const Input = () => {
         type="text"
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
+        value={text}
       />
       <div className={classes.send}>
         <img src={Attach} alt="" />
