@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import classes from "./Chats.module.css";
 import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "../../firebase";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contex/AuthContext";
+import classes from "./Chats.module.css";
+import { db } from "../../firebase";
 const Chats = () => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
+
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -19,18 +20,18 @@ const Chats = () => {
 
     currentUser.uid && getChats();
   }, [currentUser.uid]);
-  console.log(Object.entries(chats));
+
   return (
     <div className={classes.chats}>
-      {Object.entries(chats)?.map((chat) => {
+      {Object.entries(chats)?.map((chat) => (
         <div className={classes.userChat} key={chat[0]}>
-          <img src={chat[1].userInfo.photoURL} />
+          <img src={chat[1].userInfo.photoURL} alt="" />
           <div className={classes.userChatInfo}>
             <span>{chat[1].userInfo.displayName}</span>
             <p>{chat[1].userInfo.lastMessage?.text}</p>
           </div>
-        </div>;
-      })}
+        </div>
+      ))}
     </div>
   );
 };
