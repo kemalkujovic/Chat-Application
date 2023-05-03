@@ -1,17 +1,95 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import classes from "./Search.module.css";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+  getDoc,
+} from "firebase/firestore";
+import { db } from "../../firebase";
+import { AuthContext } from "../../contex/AuthContext";
 const Search = () => {
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+  const [err, setErr] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+  const handleSearch = async () => {
+    const q = query(
+      collection(db, "users"),
+      where("displayName", "==", username)
+    );
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setUser(doc.data());
+      });
+    } catch (error) {
+      setErr(true);
+    }
+  };
+
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSearch();
+  };
+
+  const handleSelect = async () => {
+    //check whether the group(chats colletion in firestore) exists, if not create new
+    const combinedId =
+      currentUser.uid > user.uid
+        ? currentUser.uid + user.uid
+        : user.uid + currentUser.uid;
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
+      if (!res.exists()) {
+        // create a chat in chats colletion
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+        // create user chats
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          [combinedId + "userInfo"]: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [combinedId + "userInfo"]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+      }
+      setUser(null);
+      setUsername("");
+    } catch (error) {}
+  };
   return (
     <div className={classes.search}>
       <div className={classes.searchForm}>
-        <input type="text" placeholder="Find a user" />
+        <input
+          type="text"
+          placeholder="Find a user"
+          onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={handleKey}
+          value={username}
+        />
       </div>
-      <div className={classes.userChat}>
-        <img src="https://howtodrawforkids.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2020/08/13-how-to-draw-a-Person.jpg.webp" />
-        <div className={classes.userChatInfo}>
-          <span>Legi</span>
+      {err && <span>User not found!</span>}
+      {user && (
+        <div className={classes.userChat} onClick={handleSelect}>
+          <img src={user.photoURL} />
+          <div className={classes.userChatInfo}>
+            <span>{user.displayName}</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
