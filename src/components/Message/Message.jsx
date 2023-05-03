@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Message.module.css";
-const Message = () => {
+import { AuthContext } from "../../contex/AuthContext";
+import { ChatContext } from "../../contex/ChatContext";
+const Message = ({ message }) => {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+
   return (
     <div className={`${classes.message} ${classes.owner}`}>
-      <div className={classes.messageInfo}>
-        <img src="https://howtodrawforkids.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2020/08/13-how-to-draw-a-Person.jpg.webp" />
+      {/* <div className={classes.messageInfo}>
+        <img src={} />
         <span>just now</span>
       </div>
       <div className={classes.messageContent}>
         <p>Hello</p>
         <img
-          src="https://howtodrawforkids.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2020/08/13-how-to-draw-a-Person.jpg.webp"
+          src={}
           alt=""
         />
-      </div>
+      </div> */}
     </div>
   );
 };
