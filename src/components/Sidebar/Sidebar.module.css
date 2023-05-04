@@ -2,8 +2,9 @@
   flex: 1;
   background-color: #3e3c61;
 }
-@media screen and (max-width: 600px) {
-  .sidebar {
+@media screen and (max-width: 800px) {
+  .hideSideBar {
     display: none;
+    background-color: #3e3c61;
   }
 }

@@ -6,16 +6,20 @@ import More from "../../img/more.jpg";
 import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
 import { ChatContext } from "../../contex/ChatContext";
-const Chat = () => {
+import { SidebarContext } from "../../contex/SidebarContext";
+const Chat = ({ showHandler }) => {
   const { data } = useContext(ChatContext);
+  const { toggleSidebar } = useContext(SidebarContext);
   return (
     <div className={classes.chat}>
-      <div className={classes.chatInfo}>
+      <div
+        className={`${toggleSidebar ? classes.chatInfo : classes.hideChatInfo}`}
+      >
         <span>{data.user?.displayName}</span>
         <div className={classes.chatIcons}>
           <img src={Cam} alt="" />
           <img src={Add} alt="" />
-          <img src={More} alt="" />
+          <img src={More} alt="" onClick={toggleSidebar} />
         </div>
       </div>
       <Messages />
