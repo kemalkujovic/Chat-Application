@@ -11,7 +11,6 @@ const Navbar = () => {
   const [imageSrc, setImageSrc] = useState(currentUser.photoURL);
   const [isImageLoaded, setIsImageLoaded] = useState(true);
   if (name) {
-    console.log(name.charAt().toUpperCase() + name.slice(1));
     dName = name.charAt().toUpperCase() + name.slice(1);
   } else {
     dName = name;

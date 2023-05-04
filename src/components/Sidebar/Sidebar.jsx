@@ -4,8 +4,9 @@ import Navbar from "../Navbar/Navbar";
 import Search from "../Search/Search";
 import Chats from "../Chats/Chats";
 import { SidebarContext } from "../../contex/SidebarContext";
-const Sidebar = () => {
-  const { isSidebarVisible } = useContext(SidebarContext);
+const Sidebar = (props) => {
+  const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
+
   return (
     <div
       className={`${isSidebarVisible ? classes.hideSideBar : classes.sidebar}`}

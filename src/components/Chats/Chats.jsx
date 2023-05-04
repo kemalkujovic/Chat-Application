@@ -4,10 +4,13 @@ import { AuthContext } from "../../contex/AuthContext";
 import classes from "./Chats.module.css";
 import { db } from "../../firebase";
 import { ChatContext } from "../../contex/ChatContext";
-const Chats = () => {
+import { SidebarContext } from "../../contex/SidebarContext";
+const Chats = (props) => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
+  const { toggleSidebar } = useContext(SidebarContext);
+  console.log(props);
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -26,6 +29,13 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
 
+  const funckijad = () => {
+    toggleSidebar();
+  };
+  const handleClick = (u) => {
+    handleSelect(u);
+    funckijad();
+  };
   return (
     <div className={classes.chats}>
       {Object.entries(chats)
@@ -34,7 +44,9 @@ const Chats = () => {
           <div
             className={classes.userChat}
             key={chat[0]}
-            onClick={() => handleSelect(chat[1].userInfo)}
+            onClick={() => {
+              handleClick(chat[1].userInfo);
+            }}
           >
             <img src={chat[1].userInfo.photoURL} alt="" />
             <div className={classes.userChatInfo}>
