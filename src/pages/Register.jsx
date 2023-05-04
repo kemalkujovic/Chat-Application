@@ -8,15 +8,15 @@ import { doc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    const displayName = e.target[0].value;
+    const displayName = e.target[0].value.toLowerCase();
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
-
     try {
       //Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -46,11 +46,13 @@ const Register = () => {
             navigate("/");
           } catch (err) {
             setErr(true);
+            setLoading(false);
           }
         });
       });
     } catch (error) {
       setErr(true);
+      setLoading(false);
     }
   };
   return (
@@ -68,6 +70,7 @@ const Register = () => {
             <span>Add an avatar</span>
           </label>
           <button>Sign Up</button>
+          {loading && "Uploading and compressing the image please wait..."}
           {err && <span>Something went wrong!</span>}
         </form>
         <p>
