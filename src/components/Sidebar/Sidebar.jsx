@@ -8,7 +8,7 @@ const Sidebar = () => {
   const { isSidebarVisible } = useContext(SidebarContext);
   return (
     <div
-      className={`${isSidebarVisible ? classes.sidebar : classes.hideSideBar}`}
+      className={`${isSidebarVisible ? classes.hideSideBar : classes.sidebar}`}
     >
       <Navbar />
       <Search />
