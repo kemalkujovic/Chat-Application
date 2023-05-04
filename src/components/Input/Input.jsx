@@ -26,7 +26,6 @@ const Input = () => {
 
       const uploadTask = uploadBytesResumable(storageRef, img);
 
-      console.log(uploadTask);
       uploadTask.on(
         (error) => {
           //TODO:Handle Error
@@ -55,6 +54,23 @@ const Input = () => {
         }),
       });
     }
+
+    await updateDoc(doc(db, "userChats", currentUser.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+
+    await updateDoc(doc(db, "userChats", data.user.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+
+    setImg(null);
+    setText("");
   };
 
   return (
