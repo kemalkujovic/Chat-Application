@@ -25,9 +25,13 @@ const Navbar = () => {
       <span className={classes.logo}>Kemal Chat</span>
       <div className={classes.user}>
         {isImageLoaded ? (
-          <img src={imageSrc} alt="photo" onError={handleImageError} />
+          <div>
+            <img src={imageSrc} alt="photo" onError={handleImageError} />
+          </div>
         ) : (
-          <img src={imageSrc} alt="photo" />
+          <div>
+            <img src={imageSrc} alt="photo" />
+          </div>
         )}
         <span>{dName}</span>
         <button onClick={() => signOut(auth)}>Logout</button>

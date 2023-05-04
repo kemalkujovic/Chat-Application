@@ -14,3 +14,8 @@
   display: flex;
   overflow: hidden;
 }
+@media screen and (max-width: 900px) {
+  .container {
+    width: 90%;
+  }
+}

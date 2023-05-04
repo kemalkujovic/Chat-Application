@@ -2,3 +2,8 @@
   flex: 1;
   background-color: #3e3c61;
 }
+@media screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}

@@ -7,12 +7,16 @@
   justify-content: space-between;
   color: #ddddf7;
 }
+.navbar span {
+  font-size: 18px;
+}
 .logo {
   font-weight: bold;
 }
 .user {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .user img {
   background-color: #ddddf7;
@@ -27,4 +31,13 @@ button {
   font-style: 10px;
   border: none;
   color: #ddddf7;
+}
+@media screen and (max-width: 900px) {
+  .logo {
+    display: none;
+  }
+  .user {
+    width: 100%;
+    justify-content: space-evenly;
+  }
 }
