@@ -17,7 +17,7 @@ const Chat = ({ showHandler }) => {
       >
         <span>{data.user?.displayName}</span>
         <div className={classes.chatIcons}>
-          <img src={Cam} alt="" />
+          <img src={Cam} alt="1" />
           <img src={Add} alt="" />
           <img src={More} alt="" onClick={toggleSidebar} />
         </div>
