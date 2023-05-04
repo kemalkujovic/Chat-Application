@@ -1,7 +1,9 @@
 .chat {
   flex: 2;
 }
-
+.hideChat {
+  flex: 2;
+}
 .chatInfo {
   height: 50px;
   background-color: #5d6b8d;
@@ -22,6 +24,9 @@
 }
 @media screen and (max-width: 800px) {
   .hideChatInfo {
+    display: none;
+  }
+  .chat {
     display: none;
   }
 }

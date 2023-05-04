@@ -9,17 +9,19 @@ import { ChatContext } from "../../contex/ChatContext";
 import { SidebarContext } from "../../contex/SidebarContext";
 const Chat = ({ showHandler }) => {
   const { data } = useContext(ChatContext);
-  const { toggleSidebar } = useContext(SidebarContext);
+  const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
+  console.log(isSidebarVisible);
   return (
-    <div className={classes.chat}>
-      <div
-        className={`${toggleSidebar ? classes.chatInfo : classes.hideChatInfo}`}
-      >
+    <div
+      onClick={toggleSidebar}
+      className={isSidebarVisible ? classes.hideChat : classes.chat}
+    >
+      <div className={`${classes.chatInfo}`}>
         <span>{data.user?.displayName}</span>
         <div className={classes.chatIcons}>
           <img src={Cam} alt="1" />
           <img src={Add} alt="1" />
-          <img src={More} alt="1" onClick={toggleSidebar} />
+          <img src={More} alt="1" />
         </div>
       </div>
       <Messages />
