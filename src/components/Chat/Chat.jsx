@@ -19,7 +19,7 @@ const Chat = ({ showHandler }) => {
         <div className={classes.chatIcons}>
           <img src={Cam} alt="1" />
           <img src={Add} alt="1" />
-          <img src={More} alt="" onClick={toggleSidebar} />
+          <img src={More} alt="1" onClick={toggleSidebar} />
         </div>
       </div>
       <Messages />
