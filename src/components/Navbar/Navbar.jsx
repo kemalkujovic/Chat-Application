@@ -23,16 +23,18 @@ const Navbar = () => {
     <div className={classes.navbar}>
       <span className={classes.logo}>Kemal Chat</span>
       <div className={classes.user}>
-        {isImageLoaded ? (
-          <div>
-            <img src={imageSrc} alt="photo" onError={handleImageError} />
-          </div>
-        ) : (
-          <div>
-            <img src={imageSrc} alt="photo" />
-          </div>
-        )}
-        <span>{dName}</span>
+        <div className={classes.navbarDisplayName}>
+          {isImageLoaded ? (
+            <div>
+              <img src={imageSrc} alt="photo" onError={handleImageError} />
+            </div>
+          ) : (
+            <div>
+              <img src={imageSrc} alt="photo" />
+            </div>
+          )}
+          <span>{dName}</span>
+        </div>
         <button onClick={() => signOut(auth)}>Logout</button>
       </div>
     </div>
