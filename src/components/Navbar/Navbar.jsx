@@ -4,7 +4,13 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { AuthContext } from "../../contex/AuthContext";
 import defaultLogo from "../../img/default.png";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 const Navbar = () => {
+  const styleIcon = {
+    cursor: "pointer",
+  };
+
   let dName;
   const { currentUser } = useContext(AuthContext);
   const name = currentUser.displayName;
@@ -30,7 +36,13 @@ const Navbar = () => {
           />
           <span>{dName}</span>
         </div>
-        <button onClick={() => signOut(auth)}>Logout</button>
+        <LogoutIcon
+          style={styleIcon}
+          fontSize="20px"
+          onClick={() => signOut(auth)}
+        >
+          Logout
+        </LogoutIcon>
       </div>
     </div>
   );

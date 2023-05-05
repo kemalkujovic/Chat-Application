@@ -15,14 +15,16 @@ const Chat = () => {
   return (
     <div className={isSidebarVisible ? classes.hideChat : classes.chat}>
       <div className={`${classes.chatInfo}`}>
-        <img
-          src={data.user.photoURL}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = defaultLogo;
-          }}
-        />
-        <span>{data.user?.displayName}</span>
+        <div className={classes.wrapperChatLogo}>
+          <img
+            src={data.user.photoURL}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = defaultLogo;
+            }}
+          />
+          <span>{data.user?.displayName}</span>
+        </div>
         <div className={classes.chatIcons}>
           <img src={Cam} alt="1" />
           <img src={Add} alt="1" />
