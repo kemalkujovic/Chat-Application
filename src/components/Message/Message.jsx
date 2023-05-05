@@ -30,13 +30,7 @@ const Message = ({ message }) => {
       } `}
     >
       <div className={classes.messageInfo}>
-        <img
-          src={
-            message.senderId === currentUser.uid
-              ? currentUser.photoURL
-              : data.user.photoURL
-          }
-        />
+        <img src={imageSrc} onError={handleImageError} />
         <span>just now</span>
       </div>
       <div className={classes.messageContent}>
