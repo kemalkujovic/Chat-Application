@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./Chat.module.css";
 import Cam from "../../img/cam.jpg";
 import Add from "../../img/add.jpg";
@@ -7,6 +7,7 @@ import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
 import { ChatContext } from "../../contex/ChatContext";
 import { SidebarContext } from "../../contex/SidebarContext";
+import defaultLogo from "../../img/default.png";
 const Chat = () => {
   const { data } = useContext(ChatContext);
   const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
@@ -14,7 +15,13 @@ const Chat = () => {
   return (
     <div className={isSidebarVisible ? classes.hideChat : classes.chat}>
       <div className={`${classes.chatInfo}`}>
-        <img src={data.user?.photoURL} />
+        <img
+          src={data.user.photoURL}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = defaultLogo;
+          }}
+        />
         <span>{data.user?.displayName}</span>
         <div className={classes.chatIcons}>
           <img src={Cam} alt="1" />

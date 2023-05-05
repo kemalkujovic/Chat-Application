@@ -5,7 +5,8 @@ import classes from "./Chats.module.css";
 import { db } from "../../firebase";
 import { ChatContext } from "../../contex/ChatContext";
 import { SidebarContext } from "../../contex/SidebarContext";
-const Chats = (props) => {
+import defaultLogo from "../../img/default.png";
+const Chats = () => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
@@ -35,6 +36,7 @@ const Chats = (props) => {
     handleSelect(u);
     funckijad();
   };
+
   return (
     <div className={classes.chats}>
       {Object.entries(chats)
@@ -47,7 +49,16 @@ const Chats = (props) => {
               handleClick(chat[1].userInfo);
             }}
           >
-            <img src={chat[1].userInfo.photoURL} alt="" />
+            {chat[1]?.userInfo?.photoURL && (
+              <img
+                src={chat[1]?.userInfo?.photoURL}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = defaultLogo;
+                }}
+                alt="DefaultLogo"
+              />
+            )}
             <div className={classes.userChatInfo}>
               <span>{chat[1].userInfo.displayName}</span>
               <p>{chat[1].lastMessage?.text}</p>
