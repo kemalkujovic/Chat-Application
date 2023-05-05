@@ -1,0 +1,10 @@
+.defaultChatContainer {
+  display: flex;
+  flex: 2;
+  background: white;
+  align-items: center;
+  justify-content: center;
+}
+.defaultChatContainer p {
+  font-size: 21px;
+}

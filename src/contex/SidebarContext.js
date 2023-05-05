@@ -6,6 +6,7 @@ export const SidebarProvider = ({ children }) => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth <= 768
   );
+
   function toggleSidebar() {
     if (window.innerWidth > 768) {
       return setIsSidebarVisible(false);

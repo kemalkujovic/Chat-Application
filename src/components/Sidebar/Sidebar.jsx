@@ -5,7 +5,7 @@ import Search from "../Search/Search";
 import Chats from "../Chats/Chats";
 import { SidebarContext } from "../../contex/SidebarContext";
 const Sidebar = (props) => {
-  const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
+  const { isSidebarVisible } = useContext(SidebarContext);
 
   return (
     <div

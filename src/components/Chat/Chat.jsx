@@ -8,8 +8,10 @@ import Input from "../Input/Input";
 import { ChatContext } from "../../contex/ChatContext";
 import { SidebarContext } from "../../contex/SidebarContext";
 import defaultLogo from "../../img/default.png";
+import { CreateChatContext } from "../../contex/CreateChatContext";
 const Chat = () => {
   const { data } = useContext(ChatContext);
+
   const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
 
   return (

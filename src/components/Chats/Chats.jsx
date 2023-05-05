@@ -6,11 +6,14 @@ import { db } from "../../firebase";
 import { ChatContext } from "../../contex/ChatContext";
 import { SidebarContext } from "../../contex/SidebarContext";
 import defaultLogo from "../../img/default.png";
+import { CreateChatContext } from "../../contex/CreateChatContext";
 const Chats = () => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const { toggleSidebar } = useContext(SidebarContext);
+  const { toggleChat } = useContext(CreateChatContext);
+
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -35,6 +38,7 @@ const Chats = () => {
   const handleClick = (u) => {
     handleSelect(u);
     funckijad();
+    toggleChat();
   };
 
   return (

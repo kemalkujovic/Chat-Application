@@ -7,11 +7,13 @@ import defaultLogo from "../../img/default.png";
 const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+
   const [imageSrc, setImageSrc] = useState(
     message.senderId === currentUser.uid
       ? currentUser.photoURL
       : data.user.photoURL
   );
+
   const ref = useRef();
 
   useEffect(() => {
