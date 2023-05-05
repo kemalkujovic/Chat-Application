@@ -10,7 +10,6 @@ const Chats = (props) => {
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const { toggleSidebar } = useContext(SidebarContext);
-  console.log(props);
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {

@@ -7,12 +7,14 @@ import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
 import { ChatContext } from "../../contex/ChatContext";
 import { SidebarContext } from "../../contex/SidebarContext";
-const Chat = ({ showHandler }) => {
+const Chat = () => {
   const { data } = useContext(ChatContext);
   const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
+
   return (
     <div className={isSidebarVisible ? classes.hideChat : classes.chat}>
       <div className={`${classes.chatInfo}`}>
+        <img src={data.user?.photoURL} />
         <span>{data.user?.displayName}</span>
         <div className={classes.chatIcons}>
           <img src={Cam} alt="1" />
