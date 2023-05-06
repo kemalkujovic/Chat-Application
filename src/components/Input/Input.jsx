@@ -25,6 +25,7 @@ const Input = () => {
       return;
     }
     if (img) {
+      console.log(img);
       const storageRef = ref(storage, uuid());
 
       const uploadTask = uploadBytesResumable(storageRef, img);
@@ -40,8 +41,8 @@ const Input = () => {
                 id: uuid(),
                 text,
                 senderId: currentUser.uid,
-                date: Timestamp.now(),
                 img: downloadURL,
+                date: Timestamp.now(),
               }),
             });
           });
