@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import classes from "./Register.module.css";
 import Add from "../img/addAvatar.jpg";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db, storage } from "../firebase";
+import { auth, db, storage, provider } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -57,6 +59,36 @@ const Register = () => {
       setLoading(false);
     }
   };
+
+  const signWithGoogle = async () => {
+    signInWithPopup(auth, provider).then(async (data) => {
+      console.log(data.user.id);
+      try {
+        await updateProfile(data.user, {
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL,
+        });
+        await setDoc(doc(db, "users", data.user.uid), {
+          uid: data.user.uid,
+          email: data.user.email,
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL,
+        });
+
+        const userChatsDocRef = doc(db, "userChats", data.user.uid);
+        const userChatsDoc = await getDoc(userChatsDocRef);
+        if (!userChatsDoc.exists()) {
+          await setDoc(doc(db, "userChats", data.user.uid), {});
+        }
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+        setErr(true);
+        setLoading(false);
+      }
+    });
+  };
+
   return (
     <div className={classes.formContainer}>
       <div className={classes.formWrapper}>
@@ -75,6 +107,7 @@ const Register = () => {
           {loading && "Uploading and compressing the image please wait..."}
           {err && <span>Something went wrong!</span>}
         </form>
+        <button onClick={signWithGoogle}>Sign in with google</button>
         <p>
           You do have an account? <Link to="/login">Login</Link>
         </p>

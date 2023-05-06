@@ -7,6 +7,7 @@ import { CreateChatContext } from "../contex/CreateChatContext";
 
 const Home = () => {
   const { isChatVisible } = useContext(CreateChatContext);
+
   return (
     <div className={classes.home}>
       <div className={classes.container}>

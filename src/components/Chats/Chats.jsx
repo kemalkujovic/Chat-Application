@@ -13,7 +13,6 @@ const Chats = () => {
   const { dispatch } = useContext(ChatContext);
   const { toggleSidebar } = useContext(SidebarContext);
   const { toggleChat } = useContext(CreateChatContext);
-
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -24,7 +23,6 @@ const Chats = () => {
         unsub();
       };
     };
-
     currentUser.uid && getChats();
   }, [currentUser.uid]);
 
@@ -40,7 +38,6 @@ const Chats = () => {
     funckijad();
     toggleChat();
   };
-
   return (
     <div className={classes.chats}>
       {Object.entries(chats)
