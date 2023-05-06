@@ -7,7 +7,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
-
+import GoogleButton from "react-google-button";
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -107,7 +107,9 @@ const Register = () => {
           {loading && "Uploading and compressing the image please wait..."}
           {err && <span>Something went wrong!</span>}
         </form>
-        <button onClick={signWithGoogle}>Sign in with google</button>
+        <GoogleButton onClick={signWithGoogle}>
+          Sign in with google
+        </GoogleButton>
         <p>
           You do have an account? <Link to="/login">Login</Link>
         </p>
