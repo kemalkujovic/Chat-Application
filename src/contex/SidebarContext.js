@@ -11,6 +11,7 @@ export const SidebarProvider = ({ children }) => {
     if (window.innerWidth > 768) {
       return setIsSidebarVisible(false);
     }
+
     setIsSidebarVisible(!isSidebarVisible);
   }
 
