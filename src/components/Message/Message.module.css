@@ -33,6 +33,7 @@
 }
 .messageContent img {
   width: 50%;
+  margin-top: 10px;
 }
 .owner {
   flex-direction: row-reverse;
