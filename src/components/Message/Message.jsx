@@ -23,7 +23,7 @@ const Message = ({ message }) => {
   function handleImageError() {
     setImageSrc(defaultLogo);
   }
-
+  console.log(message?.text);
   return (
     <div
       ref={ref}
@@ -36,7 +36,7 @@ const Message = ({ message }) => {
         <span>just now</span>
       </div>
       <div className={classes.messageContent}>
-        <p>{message.text}</p>
+        {message.text && <p>{message.text}</p>}
         {message.img && <img src={message.img} alt="" />}
       </div>
     </div>

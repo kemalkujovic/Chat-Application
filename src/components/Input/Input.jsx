@@ -21,11 +21,10 @@ const Input = () => {
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
-    if (text.length <= 0) {
+    if (text.length <= 0 && !img) {
       return;
     }
     if (img) {
-      console.log(img);
       const storageRef = ref(storage, uuid());
 
       const uploadTask = uploadBytesResumable(storageRef, img);
