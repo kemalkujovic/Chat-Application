@@ -59,3 +59,20 @@ form label {
 form img {
   width: 32px;
 }
+.separetor {
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-container,
+.separetor::before {
+  content: "or";
+  color: #ccc;
+  font-size: 15px;
+  padding: 10px 10px;
+  background-color: #fff;
+}

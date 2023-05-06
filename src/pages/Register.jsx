@@ -9,6 +9,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import GoogleButton from "react-google-button";
 const Register = () => {
+  const styleGoogleBtn = {
+    width: "100%",
+  };
+
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -97,7 +101,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="User Name" />
           <input type="email" placeholder="E-Mail" />
-          <input type="password" placeholder="password" />
+          <input type="password" placeholder="Password" />
           <input style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <img src={Add} alt="" />
@@ -107,7 +111,8 @@ const Register = () => {
           {loading && "Uploading and compressing the image please wait..."}
           {err && <span>Something went wrong!</span>}
         </form>
-        <GoogleButton onClick={signWithGoogle}>
+        <div className={classes.separetor}></div>
+        <GoogleButton style={styleGoogleBtn} onClick={signWithGoogle}>
           Sign in with google
         </GoogleButton>
         <p>

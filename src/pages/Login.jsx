@@ -26,7 +26,7 @@ const Login = () => {
         <span className={classes.title}>Login</span>
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="E-Mail" />
-          <input type="password" placeholder="password" />
+          <input type="password" placeholder="Password" />
           <button>Sign in</button>
           {err && <span>Something went wrong!</span>}
         </form>
