@@ -6,9 +6,12 @@ import { AuthContext } from "../../contex/AuthContext";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveAsIcon from "@mui/icons-material/SaveAs";
 import CloseIcon from "@mui/icons-material/Close";
+import { SettingsContext } from "../../contex/SettingsContext";
 
 const SettingsMenu = () => {
   const { currentUser } = useContext(AuthContext);
+  const { setName } = useContext(SettingsContext);
+
   const [editName, setEditName] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
 
@@ -31,7 +34,7 @@ const SettingsMenu = () => {
       displayName: displayName,
     })
       .then(() => {
-        console.log("UPDATE");
+        setName(displayName);
         setEditName(!editName);
       })
       .catch((error) => {
@@ -43,7 +46,6 @@ const SettingsMenu = () => {
     const email = emailRef.current.value;
     updateEmail(auth.currentUser, email)
       .then(() => {
-        console.log("Email update");
         setEditEmail(!editEmail);
       })
       .catch((error) => {
