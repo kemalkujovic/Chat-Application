@@ -32,6 +32,7 @@ const SettingsMenu = () => {
     })
       .then(() => {
         console.log("UPDATE");
+        setEditName(!editName);
       })
       .catch((error) => {
         console.log(error);
@@ -43,6 +44,7 @@ const SettingsMenu = () => {
     updateEmail(auth.currentUser, email)
       .then(() => {
         console.log("Email update");
+        setEditEmail(!editEmail);
       })
       .catch((error) => {
         console.log(error);
