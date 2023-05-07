@@ -1,4 +1,4 @@
-import { updateEmail, updateProfile } from "firebase/auth";
+import { updateEmail, updatePassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase";
 import React, { useContext, useRef, useState } from "react";
 import classes from "./SettingsMenu.module.css";
@@ -11,12 +11,13 @@ import { SettingsContext } from "../../contex/SettingsContext";
 const SettingsMenu = () => {
   const { currentUser } = useContext(AuthContext);
   const { setName } = useContext(SettingsContext);
-
   const [editName, setEditName] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
 
   const inputRef = useRef(null);
   const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const editIconStyle = {
     cursor: "pointer",
@@ -26,6 +27,9 @@ const SettingsMenu = () => {
   };
   const editEmailHandler = () => {
     setEditEmail(!editEmail);
+  };
+  const editPasswordHandler = () => {
+    setEditPassword(!editPassword);
   };
 
   const updateName = () => {
@@ -47,6 +51,17 @@ const SettingsMenu = () => {
     updateEmail(auth.currentUser, email)
       .then(() => {
         setEditEmail(!editEmail);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleUpdatePassword = () => {
+    const newPassword = passwordRef.current.value;
+    updatePassword(auth.currentUser, newPassword)
+      .then(() => {
+        setEditPassword(!editPassword);
       })
       .catch((error) => {
         console.log(error);
@@ -88,6 +103,29 @@ const SettingsMenu = () => {
           <div>
             <SaveAsIcon style={editIconStyle} onClick={handleUpdateEmail} />
             <CloseIcon onClick={editEmailHandler} />
+          </div>
+        )}
+      </div>
+
+      <div className={classes.settingsWrapper}>
+        <div className={classes.infoSettings}>
+          <p>Password: </p>
+          {!editPassword && <p>********</p>}
+          {editPassword && (
+            <input
+              type="password"
+              placeholder="New Password"
+              ref={passwordRef}
+            />
+          )}
+        </div>
+        {!editPassword && (
+          <EditIcon style={editIconStyle} onClick={editPasswordHandler} />
+        )}
+        {editPassword && (
+          <div>
+            <SaveAsIcon style={editIconStyle} onClick={handleUpdatePassword} />
+            <CloseIcon onClick={editPasswordHandler} />
           </div>
         )}
       </div>
