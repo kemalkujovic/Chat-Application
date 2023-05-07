@@ -1,4 +1,18 @@
 .settingsContainer {
-  flex: 1;
-  background-color: #3e3c61;
+  padding: 0px 10px;
+}
+
+.settingsWrapper {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid silver;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+.infoSettings {
+  display: flex;
+}
+.settingsWrapper p {
+  margin-left: 10px;
 }
