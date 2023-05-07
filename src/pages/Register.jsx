@@ -66,7 +66,6 @@ const Register = () => {
 
   const signWithGoogle = async () => {
     signInWithPopup(auth, provider).then(async (data) => {
-      console.log(data.user.id);
       try {
         await updateProfile(data.user, {
           displayName: data.user.displayName,

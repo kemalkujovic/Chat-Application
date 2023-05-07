@@ -37,7 +37,7 @@ const Navbar = () => {
           />
           <span>{dName}</span>
         </div>
-        <Settings style={styleIcon} />
+        <Settings />
         <LogoutIcon style={styleIcon} onClick={() => signOut(auth)}>
           Logout
         </LogoutIcon>

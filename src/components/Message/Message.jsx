@@ -23,7 +23,6 @@ const Message = ({ message }) => {
   function handleImageError() {
     setImageSrc(defaultLogo);
   }
-  console.log(message?.text);
   return (
     <div
       ref={ref}

@@ -73,7 +73,6 @@ const Search = () => {
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-      console.log(user);
     } catch (err) {
       console.log(err);
     }
