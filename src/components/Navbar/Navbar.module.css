@@ -6,6 +6,7 @@
   padding: 10px;
   justify-content: space-between;
   color: #ddddf7;
+  overflow: hidden;
 }
 .navbar span {
   font-size: 18px;

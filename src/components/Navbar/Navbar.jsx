@@ -6,7 +6,7 @@ import { AuthContext } from "../../contex/AuthContext";
 import defaultLogo from "../../img/default.png";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Settings from "../Settings/Settings";
-
+import SettingsIcon from "@mui/icons-material/Settings";
 const Navbar = () => {
   const styleIcon = {
     cursor: "pointer",
@@ -21,7 +21,10 @@ const Navbar = () => {
   } else {
     dName = name;
   }
-
+  // const [menu, setMenu] = useState(false);
+  // const handleIcon = () => {
+  //   setMenu(!menu);
+  // };
   return (
     <div className={classes.navbar}>
       <span className={classes.logo}>Kemal Chat</span>
@@ -38,6 +41,7 @@ const Navbar = () => {
           <span>{dName}</span>
         </div>
         <Settings />
+        {/* <SettingsIcon onClick={handleIcon} /> */}
         <LogoutIcon style={styleIcon} onClick={() => signOut(auth)}>
           Logout
         </LogoutIcon>
