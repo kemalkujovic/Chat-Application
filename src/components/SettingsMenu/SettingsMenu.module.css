@@ -16,3 +16,15 @@
 .settingsWrapper p {
   margin-left: 10px;
 }
+.infoSettings input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding-left: 10px;
+  padding-top: 6px;
+  color: white;
+}
+
+.infoSettings input::placeholder {
+  color: white;
+}
