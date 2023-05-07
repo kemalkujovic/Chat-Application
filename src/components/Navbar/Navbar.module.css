@@ -41,6 +41,10 @@ button {
 .logoutIcon {
   font-style: 12px;
 }
+.settingsIconsWrapper {
+  display: flex;
+  gap: 5px;
+}
 @media screen and (max-width: 900px) {
   .logo {
     display: none;

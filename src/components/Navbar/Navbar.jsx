@@ -36,10 +36,12 @@ const Navbar = () => {
           />
           <span>{dName}</span>
         </div>
-        <Settings />
-        <LogoutIcon style={styleIcon} onClick={() => signOut(auth)}>
-          Logout
-        </LogoutIcon>
+        <div className={classes.settingsIconsWrapper}>
+          <Settings />
+          <LogoutIcon style={styleIcon} onClick={() => signOut(auth)}>
+            Logout
+          </LogoutIcon>
+        </div>
       </div>
     </div>
   );
