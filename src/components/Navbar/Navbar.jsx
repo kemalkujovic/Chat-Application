@@ -5,6 +5,7 @@ import { auth } from "../../firebase";
 import { AuthContext } from "../../contex/AuthContext";
 import defaultLogo from "../../img/default.png";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Settings from "../Settings/Settings";
 
 const Navbar = () => {
   const styleIcon = {
@@ -36,11 +37,8 @@ const Navbar = () => {
           />
           <span>{dName}</span>
         </div>
-        <LogoutIcon
-          style={styleIcon}
-          fontSize="20px"
-          onClick={() => signOut(auth)}
-        >
+        <Settings style={styleIcon} />
+        <LogoutIcon style={styleIcon} onClick={() => signOut(auth)}>
           Logout
         </LogoutIcon>
       </div>
