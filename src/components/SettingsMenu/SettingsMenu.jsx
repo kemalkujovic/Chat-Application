@@ -3,6 +3,8 @@ import classes from "./SettingsMenu.module.css";
 import { AuthContext } from "../../contex/AuthContext";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveAsIcon from "@mui/icons-material/SaveAs";
+import CloseIcon from "@mui/icons-material/Close";
+
 const SettingsMenu = () => {
   const { currentUser } = useContext(AuthContext);
   const [editName, setEditName] = useState(false);
@@ -30,7 +32,10 @@ const SettingsMenu = () => {
           <EditIcon style={editIconStyle} onClick={editNameHandler} />
         )}
         {editName && (
-          <SaveAsIcon style={editIconStyle} onClick={editNameHandler} />
+          <div>
+            <SaveAsIcon style={editIconStyle} />
+            <CloseIcon onClick={editNameHandler} />
+          </div>
         )}
       </div>
       <div className={classes.settingsWrapper}>
@@ -43,7 +48,10 @@ const SettingsMenu = () => {
           <EditIcon style={editIconStyle} onClick={editEmailHandler} />
         )}
         {editEmail && (
-          <SaveAsIcon style={editIconStyle} onClick={editEmailHandler} />
+          <div>
+            <SaveAsIcon style={editIconStyle} />
+            <CloseIcon onClick={editEmailHandler} />
+          </div>
         )}
       </div>
     </div>
