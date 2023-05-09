@@ -75,6 +75,12 @@ const Input = () => {
     setText("");
     setImg(null);
   };
+  const handleKeyPress = (e) => {
+    console.log(e);
+    if (e.key === "Enter") {
+      handleSend();
+    }
+  };
 
   return (
     <div className={classes.input}>
@@ -83,6 +89,7 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKeyPress}
       />
       <div className={classes.send}>
         <img src={Attach} alt="" />
