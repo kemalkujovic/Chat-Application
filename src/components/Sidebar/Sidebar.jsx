@@ -12,7 +12,7 @@ const Sidebar = (props) => {
 
   return (
     <div
-      className={`${isSidebarVisible ? classes.hideSideBar : classes.sidebar}`}
+      className={`${!isSidebarVisible ? classes.hideSideBar : classes.sidebar}`}
     >
       <Navbar />
       {isSettingsVisible ? (

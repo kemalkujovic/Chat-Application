@@ -14,7 +14,7 @@ const Chat = () => {
   const { isSidebarVisible, toggleSidebar } = useContext(SidebarContext);
 
   return (
-    <div className={isSidebarVisible ? classes.hideChat : classes.chat}>
+    <div className={!isSidebarVisible ? classes.hideChat : classes.chat}>
       <div className={`${classes.chatInfo}`}>
         <div className={classes.wrapperChatLogo}>
           <img
