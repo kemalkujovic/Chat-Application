@@ -33,7 +33,10 @@ const Input = () => {
         (error) => {
           //TODO:Handle Error
         },
-        () => {
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
