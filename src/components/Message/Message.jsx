@@ -34,11 +34,7 @@ const Message = ({ message }) => {
         <img src={imageSrc} onError={handleImageError} />
         <span>just now</span>
       </div>
-      <div
-        className={`${classes.messageContent} ${
-          message.senderId === currentUser.uid && classes.owner
-        } `}
-      >
+      <div className={classes.messageContent}>
         {message.text && <p>{message.text}</p>}
         {message.img && <img src={message.img} alt="" />}
       </div>
