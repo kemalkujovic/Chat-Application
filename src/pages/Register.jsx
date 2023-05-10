@@ -107,7 +107,7 @@ const Register = () => {
             <span>Add an avatar</span>
           </label>
           <button>Sign Up</button>
-          {loading && "Uploading and compressing the image please wait..."}
+          {loading && "Uploading the image please wait..."}
           {err && <span>Something went wrong!</span>}
         </form>
         <div className={classes.separetor}></div>
