@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../contex/AuthContext";
-
+import defaultLogo from "../../img/default.png";
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
@@ -94,7 +94,13 @@ const Search = () => {
       {err && <span>User not found!</span>}
       {user && (
         <div className={classes.userChat} onClick={handleSelect}>
-          <img src={user.photoURL} />
+          <img
+            src={user.photoURL}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = defaultLogo;
+            }}
+          />
           <div className={classes.userChatInfo}>
             <span>{user.displayName}</span>
           </div>
